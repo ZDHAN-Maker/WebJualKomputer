@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Utama</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="/src/script/script.js" defer></script>
+    <script src="/src/script/pop-up.js" defer></script>
+</head>
+<body>
+    <div class="navbar-container">
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search...">
+        </div>
+        
+        <div class="nav-content"> <!-- Pembungkus baru -->
+            <div class="nav-menu">
+                <button class="nav-button">Home</button>
+                <button class="nav-button">About</button>
+                <button class="nav-button">Spare Parts</button>
+                <button class="nav-button">Computer</button>
+            </div>
+            
+            <div class="nav-icons">
+                <img src="/src/assets/shopping-basket_8919217.png" class="nav-icon-img" alt="Keranjang">
+                <img src="/src/assets/dollar-symbol_8690673.png"  class="nav-icon-img" id="balanceIcon" alt="Saldo" title="Jumlah saldo kosong">
+                <img src="/src/assets/Headset-Gaming-JETEX-G7-1.jpg" class="profile-pic" alt="Profil">
+                
+            </div>
+        </div>
+    </div>
+    <!-- Popup Saldo -->
+    <div class="popup" id="balancePopup">
+        <div class="popup-header">
+            <h2>Saldo</h2>
+            <button class="close-btn" id="closeBalance">&times;</button>
+        </div>
+        <div class="info-item">
+            <label for="saldoValue">Jumlah Saldo:</label>
+            <input type="number" id="saldoValue" class="info-value" value="0">
+        </div>
+        <div class="button-group">
+            <button class="save-btn" onclick="kurangiSaldo()">Kurangi</button>
+            <button class="save-btn" onclick="tambahSaldo()">Tambah</button>
+            <button class="save-btn" onclick="simpanSaldo()">Simpan</button>
+        </div>
+    </div>
+    <div class="gallery"  id="gallery">
+        <img src="/src/assets/Headset-Gaming-JETEX-G7-1.jpg" alt="Product 1" class="product-image" 
+             data-name="Laptop Gaming" 
+             data-brand="Asus" 
+             data-price="12.500.000" 
+             data-specs="Processor: Intel i7, RAM: 16GB, GPU: RTX 3060">
+        
+        <img src="/src/assets/DM_EF318588A316A9F4AC9986788DF73D67_230522110501_ll.jpg_xl.jpg" alt="Product 2" class="product-image" 
+             data-name="Smartphone" 
+             data-brand="Samsung" 
+             data-price="8.999.000" 
+             data-specs="RAM: 8GB, Storage: 128GB, Kamera: 108MP">
+
+             <img src="/src/assets/transcend-esd250c-250gb-black-portable-external-ssd-ts250gesd270c.jpg" alt="Product 3" class="product-image" 
+             data-name="Monitor 27 Inch" 
+             data-brand="LG" 
+             data-price="3.750.000" 
+             data-specs="Resolusi: 2560x1440, Refresh Rate: 144Hz, Panel: IPS">
+        
+        <!-- Gambar 4 (Baru) -->
+        <img src="/src/assets/pic_logitech_G502_1_031118171109_ll.jpg.jpg" alt="Product 4" class="product-image" 
+             data-name="Keyboard Mechanical" 
+             data-brand="Razer" 
+             data-price="1.899.000" 
+             data-specs="Switch: Green, Backlight: RGB, Layout: US">
+        
+        <!-- Gambar 5 (Baru) -->
+        <img src="/src/assets/transcend-esd250c-250gb-black-portable-external-ssd-ts250gesd270c.jpg" alt="Product 5" class="product-image" 
+             data-name="Mouse Gaming" 
+             data-brand="Logitech" 
+             data-price="1.250.000" 
+             data-specs="DPI: 16000, Sensor: HERO, Koneksi: Wireless">
+        
+        <!-- Gambar 6 (Baru) -->
+        <img src="/src/assets/pic_logitech_G502_1_031118171109_ll.jpg.jpg" alt="Product 6" class="product-image" 
+             data-name="Headset Bluetooth" 
+             data-brand="Sony" 
+             data-price="2.499.000" 
+             data-specs="Battery: 30 jam, Noise Cancelling: Yes, Koneksi: Bluetooth 5.0">
+        
+        <!-- Gambar 7 (Baru) -->
+        <img src="/src/assets/transcend-esd250c-250gb-black-portable-external-ssd-ts250gesd270c.jpg" alt="Product 7" class="product-image" 
+             data-name="External SSD" 
+             data-brand="SanDisk" 
+             data-price="1.750.000" 
+             data-specs="Kapasitas: 1TB, Kecepatan: 550MB/s, Interface: USB-C">
+    </div>
+
+      <!-- Tombol Tambah Produk -->
+      <button class="add-product-btn" id="addProductBtn">+</button>
+
+      <!-- Popup Tambah Produk -->
+      <div class="overlay" id="addProductOverlay"></div>
+      
+      <div class="add-product-popup" id="addProductPopup">
+          <h2>Tambah Produk Baru</h2>
+          
+          <div class="form-group">
+              <label for="newImageUrl">URL Gambar:</label>
+              <input type="text" id="newImageUrl" placeholder="https://example.com/image.jpg">
+          </div>
+          
+          <div class="form-group">
+              <label for="newProductName">Nama Produk:</label>
+              <input type="text" id="newProductName" placeholder="Nama produk">
+          </div>
+          
+          <div class="form-group">
+              <label for="newProductBrand">Merek:</label>
+              <input type="text" id="newProductBrand" placeholder="Merek produk">
+          </div>
+          
+          <div class="form-group">
+              <label for="newProductPrice">Harga:</label>
+              <input type="text" id="newProductPrice" placeholder="Harga produk">
+          </div>
+          
+          <div class="form-group">
+              <label for="newProductSpecs">Spesifikasi:</label>
+              <textarea id="newProductSpecs" placeholder="Spesifikasi produk"></textarea>
+          </div>
+          
+          <div class="action-buttons">
+              <button class="cancel-btn" id="cancelAddBtn">Batal</button>
+              <button class="add-btn" id="confirmAddBtn">Tambah</button>
+          </div>
+      </div>
+      
+    <!-- Popup Informasi -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+    
+        <div class="popup-header">
+            <h2>Informasi Produk</h2>
+            <button class="close-btn" id="closeBtn">&times;</button>
+        </div>
+        
+        <div class="info-item">
+            <label class="info-label">Nama:</label>
+            <input type="text" class="info-value" id="productName">
+        </div>
+        
+        <div class="info-item">
+            <label class="info-label">Merek:</label>
+            <input type="text" class="info-value" id="productBrand">
+        </div>
+        
+        <div class="info-item">
+            <label class="info-label">Harga:</label>
+            <input type="text" class="info-value" id="productPrice">
+        </div>
+        
+        <div class="info-item">
+            <label class="info-label">Spesifikasi:</label>
+            <textarea class="info-value" id="productSpecs" rows="4"></textarea>
+        </div>
+        <div class="button-group">
+            <button class="delete-btn" id="deleteBtn">Hapus Produk</button>
+            <button class="save-btn" id="saveBtn">Simpan Perubahan</button>
+        </div>
+    </div>
+</body>
+</html>
